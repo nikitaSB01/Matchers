@@ -1,22 +1,25 @@
-  import lifePlayer from "../app";
+import lifePlayer from '../app';
+
+let arr = [];
 const players = [
-  { name: "мечник", health: 10 },
-  { name: "маг", health: 100 },
-  { name: "лучник", health: 80 },
+  { name: 'мечник', health: 10 },
+  { name: 'маг', health: 100 },
+  { name: 'лучник', health: 80 },
 ];
-let arr = players.sort((a, b) => {
-  if (a["health"] > b["health"]) {
+arr = players.sort((a, b) => {
+  if (a.health > b.health) {
     return -1;
   }
+  return arr;
 });
 //  console.log(arr);
 
-test.each(arr)("testing life player %s status and %i amount", (amount, exp) => {
+test.each(arr)('testing life player %s status and %i amount', (amount, exp) => {
   const result = lifePlayer(amount);
   expect(result).toEqual(exp);
 });
 
-/* 
+/*
 test('lifePlayer', () => {
   const player = { name: 'Маг', health: 90 };
   const result = lifePlayer(player);
