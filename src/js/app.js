@@ -1,11 +1,15 @@
-export default function lifePlayer(player) {
-  let result = '';
-  if (player.health > 50) {
-    result = 'healthy';
-  } if (player.health >= 15 && player.health < 50) {
-    result = 'wounded';
-  } if (player.health < 15) {
-    result = 'critical';
+export default function lifePlayer(object) {
+  if (!object || !object.health) {
+    return 'Передано некорректное значение';
   }
-  return result;
+  if (object.health > 50) {
+    return 'healthy';
+  }
+  if (object.health <= 50 && object.health > 15) {
+    return 'wounded';
+  }
+  if (object.health <= 15) {
+    return 'critical';
+  }
+  return 'Значение health некорректное';
 }

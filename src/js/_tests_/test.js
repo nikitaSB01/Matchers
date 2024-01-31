@@ -1,10 +1,24 @@
 import lifePlayer from '../app';
 
-let arr = [];
+test('lifePlayer function return text value', () => {
+  const healthy = lifePlayer({ name: 'Маг', health: 90 });
+  const wounded = lifePlayer({ name: 'Маг', health: 40 });
+  const critical = lifePlayer({ name: 'Маг', health: 10 });
+  const errorValue = lifePlayer(undefined);
+  const errorValueHealth = lifePlayer({ name: 'Маг', health: '10o' });
+
+  expect(healthy).toBe('healthy');
+  expect(wounded).toBe('wounded');
+  expect(critical).toBe('critical');
+  expect(errorValue).toBe('Передано некорректное значение');
+  expect(errorValueHealth).toBe('Значение health некорректное');
+});
+
+/* let arr = [];
 const players = [
-  { name: 'мечник', health: 10 },
-  { name: 'маг', health: 100 },
-  { name: 'лучник', health: 80 },
+  [{ name: 'мечник', health: 10 }, 'critical'],
+  [{ name: 'маг', health: 100 }, 'healthy'],
+  [{ name: 'лучник', health: 80 }, 'healthy'],
 ];
 arr = players.sort((a, b) => {
   if (a.health > b.health) {
@@ -12,26 +26,7 @@ arr = players.sort((a, b) => {
   }
   return arr;
 });
-//  console.log(arr);
-
-test.each(arr)('testing life player %s status and %i amount', (amount, exp) => {
-  const result = lifePlayer(amount);
-  expect(result).toEqual(exp);
-});
-
-/*
-test('lifePlayer', () => {
-  const player = { name: 'Маг', health: 90 };
-  const result = lifePlayer(player);
-  expect(result).toBe('healthy');
-});
-test('lifePlayer', () => {
-  const player = { name: 'Маг', health: 30 };
-  const result = lifePlayer(player);
-  expect(result).toBe('wounded');
-});
-test('lifePlayer', () => {
-  const player = { name: 'Маг', health: 10 };
-  const result = lifePlayer(player);
-  expect(result).toBe('critical');
+test.each(arr)('testing life players status and amount', (object, sos) => {
+  const result = lifePlayer(object);
+  expect(result).toEqual(sos);
 }); */
